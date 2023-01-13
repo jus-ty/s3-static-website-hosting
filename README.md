@@ -7,44 +7,19 @@ Project to setup S3 Static Website hosting on AWS
 
 #### Setup
 
-1. Complete region selection and terraform state bucket creation by running ./init.sh
+1. Edit the html files under src to your requirements/desire!
+
+2. Complete region selection and terraform state bucket creation by running ./init.sh
     - If you already have a terraform state bucket in your account and wish to use that one:
-        - Run ./init.sh <<STATE_BUCKET_NAME>> ... and enter the region of that bucket when prompted
+        - Run ./init.sh <<STATE_BUCKET_NAME>>
 
-- Terraform to setup:
-    - S3 bucket (w/ public access) + tags + Static hosting setup + Bucket policy
-    - R53???
+3. Run ./deploy.sh <<ACTION>>
+- First action should be plan, then after verifying the plan, run again with apply
 
-- Script to upload the html files into your S3 bucket?
+4. Your S3 Static website should now be running! You can access it with the S3 endpoint in your bucket under Properties > Static website hosting > Bucket website endpoint
 
-Notes:
+5. (OPTIONAL) You may also decide to have a Route53/BYO Domain linking to your static website, you can follow this AWS Walkthrough:
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html
 
-Resume webpage (S3 Static Site + R53?, https://justinlewiswalton.com/)
+TODO: FIGURE OUT WHY ITS DOWNLOADING THE SITE GRRRR
 
-https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html
-
-https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteEndpoints.html
-
-.. with BLOG POSTS!
-
-
-
-
-BUCKET POLICY:
-
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "PublicReadGetObject",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": [
-                "s3:GetObject"
-            ],
-            "Resource": [
-                "arn:aws:s3:::<<Bucket-Name>>/*"
-            ]
-        }
-    ]
-}

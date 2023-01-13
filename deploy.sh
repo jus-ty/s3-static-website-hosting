@@ -1,35 +1,32 @@
-#!/bin/bash
+#!/usr/bin/env bash
 action=${1,,}
 
 source ./conf.config
 
-echo "$aws_region"
-echo "$state_bucket_name"
-
 
 # Parameter validation: action
-# if [ "$action" == "plan" ]; then
-#     echo "Plan action selected!"
-# elif [ "$action" == "apply" ]; then
-#     echo "Apply action selected!"
-# elif [ "$action" == "destroy" ]; then
-#     echo "Destroy action selected!"
-# else
-#     echo "Invalid action selected. Must be one of 'plan', 'apply' or 'destroy'"
-#     exit
-# fi
+if [ "$action" == "plan" ]; then
+    echo "Plan action selected!"
+elif [ "$action" == "apply" ]; then
+    echo "Apply action selected!"
+elif [ "$action" == "destroy" ]; then
+    echo "Destroy action selected!"
+else
+    echo "Invalid action selected. Must be one of: 'plan', 'apply' or 'destroy'"
+    exit
+fi
 
-# # Get branch name
-# branch_name=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
-# name="s3_static_website_hosting_terraform_state"
+# Get branch name
+branch_name=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+workspace_name="s3-static-website-hosting-$account_number"
 
-# cd terraform
+cd infra
 
-# terraform init -reconfigure \
-# -backend-config="bucket=${state_bucket}" \
-# -backend-config="key=$name" \
-# -backend-config="region=${region}"
+terraform init -reconfigure \
+-backend-config="bucket=$state_bucket_name" \
+-backend-config="key=$workspace_name" \
+-backend-config="region=$aws_region"
 
-# terraform workspace select $name || terraform workspace new $name
+terraform workspace select $workspace_name || terraform workspace new $workspace_name
 
-# terraform $action -var-file="environment/terraform.tfvars" -var "git_branch=$branch_name"
+terraform $action -var-file="environment/terraform.tfvars" -var "aws_region=$aws_region" -var "git_branch=$branch_name" -var "bucket_name=$website_bucket_name"

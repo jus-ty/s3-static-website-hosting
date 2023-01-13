@@ -1,10 +1,16 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # NOTE: This script will prompt for region selection and create your terraform state bucket,
 # you must have the AWS CLI installed AND run this script from an IAM User/Role that allows the S3:CreateBucket action.
 
 rm -f conf.config
 
+# Hosting Bucket name
+
+website_bucket_name=""
+read -p 'Enter the domain name of your website (without protocol or top level domain): ' website_bucket_name
+
+echo "website_bucket_name=${website_bucket_name}" >> conf.config
 
 
 
@@ -34,8 +40,10 @@ echo "aws_region=${aws_region}" >> conf.config
 # Terraform state bucket creation
 byo_state_bucket=${1,,}
 
+account_number=$(aws sts get-caller-identity --query Account --output text)
+echo "account_number=${account_number}" >> conf.config
+
 if [ -z "$byo_state_bucket" ]; then
-    account_number=$(aws sts get-caller-identity --query Account --output text)
     state_bucket_name="terraform-state-${account_number}"
     aws s3 mb "s3://${state_bucket_name}" --region "${aws_region}"
 else
