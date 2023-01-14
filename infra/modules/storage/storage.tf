@@ -42,10 +42,11 @@ resource "aws_s3_bucket_website_configuration" "website_bucket_configuration" {
     }
 }
 
-resource "aws_s3_bucket_object" "website_contents" {
-    for_each    = fileset("../src/", "*")
-    bucket      = aws_s3_bucket.website_bucket.id
-    key         = each.value
-    source      = "../src/${each.value}"
-    etag        = filemd5("../src/${each.value}")
+resource "aws_s3_bucket_object" "website_contents_html" {
+    for_each      = fileset("../src/html/", "*")
+    bucket        = aws_s3_bucket.website_bucket.id
+    key           = each.value
+    source        = "../src/html/${each.value}"
+    etag          = filemd5("../src/html/${each.value}")
+    content_type  = "text/html"
 }
