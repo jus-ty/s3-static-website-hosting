@@ -10,9 +10,31 @@ rm -f conf.config
 website_bucket_name=""
 read -p 'Enter the domain name of your website (without protocol or top level domain): ' website_bucket_name
 
-echo "website_bucket_name=${website_bucket_name}" >> conf.config
 
+# Top Level Domain Selection
 
+echo 'Please select a Top Level Domain (TLD) from the following list:'
+sleep 2
+nl tld.list
+count="$(wc -l tld.list | cut -f 1 -d' ')"
+n_tld=""
+while true; do
+    read -p 'Enter number (e.g 2 for .net): ' n_tld
+    # If $n_tld is an integer between one and $count...
+    if [ "$n_tld" -eq "$n_tld" ] && [ "$n_tld" -gt 0 ] && [ "$n_tld" -le "$count" ]; then
+        break
+    fi
+done
+
+tld="$(sed -n "${n_tld}p" tld.list)"
+echo "The user selected option number $n_tld: '$tld'"
+
+if [ "$tld" == "OTHER (Not listed above)" ]; then
+    tld=""
+    read -p 'Enter the Top Level Domain (TLD) (e.g .xyz): ' tld
+fi
+
+echo "website_bucket_name=${website_bucket_name}${tld}" >> conf.config
 
 # Region Selection
 

@@ -18,8 +18,5 @@ Project to setup S3 Static Website hosting on AWS
 
 4. Your S3 Static website should now be running! You can access it with the S3 endpoint in your bucket under Properties > Static website hosting > Bucket website endpoint
 
-5. (OPTIONAL) You may also decide to have a Route53/BYO Domain linking to your static website, you can follow this AWS Walkthrough:
-https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html
-
-TODO: FIGURE OUT WHY ITS DOWNLOADING THE SITE GRRRR
-
+5. (OPTIONAL) You may also decide to have a Route53/BYO Domain linking to your static website, you can follow this guide:
+https://youtu.be/fm6FPQMZ_WI?t=319
