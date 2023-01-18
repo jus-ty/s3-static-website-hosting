@@ -114,6 +114,7 @@ resource "aws_s3_bucket_object" "website_contents_css" {
     key           = "assets/css/${each.value}"
     source        = "../src/assets/css/${each.value}"
     etag          = filemd5("../src/assets/css/${each.value}")
+    content_type  = "text/css"
 }
 
 resource "aws_s3_bucket_object" "website_contents_js" {
@@ -122,4 +123,5 @@ resource "aws_s3_bucket_object" "website_contents_js" {
     key           = "assets/js/${each.value}"
     source        = "../src/assets/js/${each.value}"
     etag          = filemd5("../src/assets/js/${each.value}")
+    content_type  = "text/javascript"
 }
