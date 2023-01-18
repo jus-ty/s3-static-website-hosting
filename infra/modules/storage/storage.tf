@@ -92,10 +92,10 @@ resource "aws_s3_bucket_website_configuration" "subdomain_bucket_configuration" 
 }
 
 resource "aws_s3_bucket_object" "website_contents_html" {
-    for_each      = fileset("../src/html/", "*")
+    for_each      = fileset("../src/", "*")
     bucket        = aws_s3_bucket.website_bucket.id
     key           = each.value
-    source        = "../src/html/${each.value}"
-    etag          = filemd5("../src/html/${each.value}")
+    source        = "../src/${each.value}"
+    etag          = filemd5("../src/${each.value}")
     content_type  = "text/html"
 }
