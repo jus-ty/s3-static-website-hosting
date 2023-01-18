@@ -30,7 +30,7 @@ https://youtu.be/fm6FPQMZ_WI?t=319
 (2) Click on the hosted zone with your desired domain name and click on 'Create Record'
 
 (3) Create the record with the following setup (root domain):
-- Record name: <<Leave it blank>>
+- Record name: Leave it blank
 - Record type: A record (Routes to an IPv4 address and some AWS resources
 - Alias: True
 - Route traffic to: Alias to S3 website endpoint > Select your region > Select your S3 endpoint (If none appears, type: s3-website-<<REGION_NAME>>.amazonaws.com)
