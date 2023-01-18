@@ -13,7 +13,7 @@ Project to setup S3 Static Website hosting on AWS
     - If you already have a terraform state bucket in your account and wish to use that one:
         - Run ./init.sh <<STATE_BUCKET_NAME>>
 
-3. Run ./deploy.sh <<ACTION>>
+3. Run ./deploy.sh <<TF_ACTION>>
 - First action should be plan, then after verifying the plan, run again with apply
 
 4. Your S3 Static website should now be running! You can access it with the S3 endpoint in your bucket under Properties > Static website hosting > Bucket website endpoint
