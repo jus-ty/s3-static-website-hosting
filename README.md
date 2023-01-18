@@ -34,7 +34,7 @@ https://youtu.be/fm6FPQMZ_WI?t=319
 - Record type: A record (Routes to an IPv4 address and some AWS resources
 - Alias: True
 - Route traffic to: Alias to S3 website endpoint > Select your region > Select your S3 endpoint (If none appears, type: s3-website-<<REGION_NAME>>.amazonaws.com)
-- Routing policy: Whatever you desire (If you don't know which one to pick, select 'Simple routing')
+- Routing policy: Simple routing
 - Evaluate target health: No
 
 (4) Create the record with the following setup (sub domain):
@@ -42,7 +42,7 @@ https://youtu.be/fm6FPQMZ_WI?t=319
 - Record type: A record (Routes to an IPv4 address and some AWS resources
 - Alias: True
 - Route traffic to: Alias to S3 website endpoint > Select your region > Select your S3 endpoint (If none appears, type: s3-website-<<REGION_NAME>>.amazonaws.com)
-- Routing policy: Whatever you desire (If you don't know which one to pick, select 'Simple routing')
+- Routing policy: Simple routing
 - Evaluate target health: No
 
 (5) Your R53 domain should now evaluate to your static website!
