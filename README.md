@@ -24,6 +24,7 @@ Project to setup S3 Static Website hosting on AWS
 https://youtu.be/fm6FPQMZ_WI?t=319
 
 - If you have a domain registered in Route53:
+
 (1) Navigate to Route53 > Hosted Zones. AWS would've already created a public hosted zone for you once your domain was successfully registered.
 
 (2) Click on the hosted zone with your desired domain name and click on 'Create Record'
