@@ -48,5 +48,7 @@ https://youtu.be/fm6FPQMZ_WI?t=319
 (5) Your R53 domain should now evaluate to your static website!
 
 
+
+
 References:
 - https://docs.aws.amazon.com/AmazonS3/latest/userguide/website-hosting-custom-domain-walkthrough.html
