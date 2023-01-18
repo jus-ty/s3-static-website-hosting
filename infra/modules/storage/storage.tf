@@ -99,3 +99,27 @@ resource "aws_s3_bucket_object" "website_contents_html" {
     etag          = filemd5("../src/${each.value}")
     content_type  = "text/html"
 }
+
+resource "aws_s3_bucket_object" "website_contents_images" {
+    for_each      = fileset("../src/assets/images", "*")
+    bucket        = aws_s3_bucket.website_bucket.id
+    key           = "assets/images/${each.value}"
+    source        = "../src/assets/images/${each.value}"
+    etag          = filemd5("../src/assets/images/${each.value}")
+}
+
+resource "aws_s3_bucket_object" "website_contents_css" {
+    for_each      = fileset("../src/assets/css", "*")
+    bucket        = aws_s3_bucket.website_bucket.id
+    key           = "assets/css/${each.value}"
+    source        = "../src/assets/css/${each.value}"
+    etag          = filemd5("../src/assets/css/${each.value}")
+}
+
+resource "aws_s3_bucket_object" "website_contents_js" {
+    for_each      = fileset("../src/assets/js", "*")
+    bucket        = aws_s3_bucket.website_bucket.id
+    key           = "assets/js/${each.value}"
+    source        = "../src/assets/js/${each.value}"
+    etag          = filemd5("../src/assets/js/${each.value}")
+}
