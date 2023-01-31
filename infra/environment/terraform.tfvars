@@ -1,4 +1,4 @@
 # General
 generic_tags    = {
-    "Project": "s3-static-website-hosting"
+    "Repo": "s3-static-website-hosting"
 }
