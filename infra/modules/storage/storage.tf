@@ -58,7 +58,6 @@ resource "aws_s3_bucket_logging" "server_access_logging" {
   target_prefix = "log/"
 }
 
-#########################
 resource "aws_s3_bucket_policy" "logging_bucket_policy" {
     bucket  = aws_s3_bucket.website_logging_bucket.id
     policy  = data.aws_iam_policy_document.logging_bucket_allow_logs.json
@@ -80,7 +79,6 @@ data "aws_iam_policy_document" "logging_bucket_allow_logs" {
     ]
   }
 }
-######################
 
 resource "aws_s3_bucket_website_configuration" "subdomain_bucket_configuration" {
     bucket = aws_s3_bucket.website_subdomain_bucket.bucket
